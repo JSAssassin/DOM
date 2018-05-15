@@ -4,6 +4,10 @@ const listDiv = document.querySelector('.list');
 const myHeading = document.getElementsByTagName('h1')[0];
 const myButton = document.getElementById('myButton');
 const mytextInput = document.getElementById('myTextInput');
+const addItemInput = document.querySelector('input.addItemInput')
+const addItemButton = document.querySelector('button.addItemButton')
+const removeItemButton = document.querySelector('button.removeItemButton')
+
 
 toggleList.addEventListener('click', () => {
     if (listDiv.style.display == 'none') {
@@ -17,6 +21,7 @@ toggleList.addEventListener('click', () => {
 
 myButton.addEventListener('click', () => {
     myHeading.style.color = myTextInput.value;
+    myTextInput.value = '';
 });
 
 const myList = document.getElementsByTagName('li');
@@ -38,13 +43,31 @@ for (let i = 0; i < even.length; i++) {
     even[i].style.backgroundColor = 'lightgrey';
 }
 
-const input = document.querySelector('input#description');
-const p = document.querySelector('p.description');
-const button = document.querySelector('button.description');
+const descriptionInput = document.querySelector('input#description');
+const descriptionP = document.querySelector('p.description');
+const descriptionButton = document.querySelector('button.description');
 
-button.addEventListener('click', () => {
+descriptionButton.addEventListener('click', () => {
     // p.textContent = input.value + ':'; OR
-    p.innerHTML = input.value + ':';
+    descriptionP.innerHTML = descriptionInput.value + ':';
+    descriptionInput.value = "";
 });
 
-p.title = "List Description";
+addItemButton.addEventListener('click', () => {
+    let ul = document.getElementsByTagName('ul')[0];
+    let li= document.createElement('li');
+    li.textContent = addItemInput.value;
+    ul.appendChild(li);
+    addItemInput.value = '';
+    // the empty string means it will auto clear the text in the input 
+});
+
+removeItemButton.addEventListener('click', () => {
+    let ul = document.getElementsByTagName('ul')[0];
+    let li= document.querySelector('li:last-child');
+    ul.removeChild(li);
+});
+
+
+
+descriptionP.title = "List Description";
