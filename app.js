@@ -7,7 +7,26 @@ const mytextInput = document.getElementById('myTextInput');
 const addItemInput = document.querySelector('input.addItemInput')
 const addItemButton = document.querySelector('button.addItemButton')
 const removeItemButton = document.querySelector('button.removeItemButton')
+// const listItems = document.getElementsByTagName('li');
 
+// for (let i = 0; i < listItems.length; i++) {
+//  listItems[i].addEventListener('mouseover', () => {
+//         listItems[i].textContent = listItems[i].textContent.toUpperCase();
+//     });
+//   listItems[i].addEventListener('mouseout', () => {
+//         listItems[i].textContent = listItems[i].textContent.toLowerCase();
+//     });
+// } This does not let the items added later to captilaize on mouse hover so we use the method shown below
+listDiv.addEventListener('mouseover', (event) => {
+    if(event.target.tagName == 'LI'){
+    event.target.textContent = event.target.textContent.toUpperCase();
+    }
+});
+listDiv.addEventListener('mouseout', (event) => {
+    if(event.target.tagName == 'LI'){
+    event.target.textContent = event.target.textContent.toLowerCase();
+    }
+});
 
 toggleList.addEventListener('click', () => {
     if (listDiv.style.display == 'none') {
@@ -55,7 +74,7 @@ descriptionButton.addEventListener('click', () => {
 
 addItemButton.addEventListener('click', () => {
     let ul = document.getElementsByTagName('ul')[0];
-    let li= document.createElement('li');
+    let li = document.createElement('li');
     li.textContent = addItemInput.value;
     ul.appendChild(li);
     addItemInput.value = '';
@@ -64,7 +83,7 @@ addItemButton.addEventListener('click', () => {
 
 removeItemButton.addEventListener('click', () => {
     let ul = document.getElementsByTagName('ul')[0];
-    let li= document.querySelector('li:last-child');
+    let li = document.querySelector('li:last-child');
     ul.removeChild(li);
 });
 
